@@ -12,11 +12,14 @@ html, body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #448aff;
 }
 
 .manager {
   min-height: 60px;
-  background-color: red;
+  background-color: lightblue;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .main-container {
@@ -36,30 +39,33 @@ html, body {
 .timer-container {
   display: flex;
   align-items: center;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   padding: 0px 10px;
+  width: 100%;
+  margin: 1px;
 }
 
 .timer-container > input {
   height: 20px;
   margin: 0 10px;
-  background-color: lightblue;
+  background-color: white;
+  flex-grow: 1;
+}
+
+.timer-container > p {
+  margin: 0;
+}
+
+.timer-button {
+  margin: 5px 10px;
 }
 
 .manager > button {
-  position: absolute;
-  right: 40px;
-  bottom: 10px;
-  min-height: 40px;
-  width: 40px;
-  font-size: 20px;
+  font-size: 16px;
+  min-width: 60px;
   font-weight: bold;
 }
 
 button:hover {
   cursor: pointer;
-}
-
-.timer-container > button {
-  margin: 0 10px;
 }

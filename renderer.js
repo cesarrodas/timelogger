@@ -32,6 +32,7 @@ class Timer {
     this.container = document.createElement("div");
     this.container.classList.add("timer-container");
     this.task = document.createElement("input");
+    this.task.classList.add("form-control");
     this.timer = document.createElement("p");
     this.timer.innerText = "00:00:00";
     this.container.append(this.task);
@@ -39,6 +40,7 @@ class Timer {
     container.append(this.container);
 
     this.startButton = document.createElement("button");
+    this.startButton.classList.add("timer-button");
     this.startButton.innerText = "Start";
     this.startButton.addEventListener("click",() => {
       if(!this.interval){        
