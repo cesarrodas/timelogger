@@ -13,6 +13,8 @@ class Timer {
     this.seconds = 0;
     this.display();
     this.started = false;
+    this.start = null;
+    this.done = null;
   }
   
   timerFormatter(){
@@ -45,18 +47,21 @@ class Timer {
     this.startButton.addEventListener("click",() => {
       if(!this.interval){        
         this.startButton.innerText = "Log";
+        this.start = Date.now();
         this.interval = setInterval(() => {
           this.seconds++;
           this.timer.innerText = this.timerFormatter();
         }, 1000);
       } else {
         clearInterval(this.interval);
+        this.done = Date.now();
       } 
     });
     this.container.append(this.startButton);
 
     this.include = document.createElement("INPUT");
     this.include.setAttribute("type", "checkbox");
+    this.include.checked = true;
     this.container.append(this.include);
   }
 }
@@ -69,3 +74,20 @@ newtimer.addEventListener("click", () => {
   let newtim = new Timer();
   GLOBAL_TIMERS.push(newtim);
 })
+
+
+let appendButton = document.querySelector("#appendButton");
+// avatar.addEventListener("change", (e) => {
+//   console.log(e.target.files[0].path);
+// });
+
+appendButton.addEventListener('click', () => {
+  window.electronAPI.appendToFile("appending")
+});
+
+let savingButton = document.querySelector("#savingButton");
+savingButton.addEventListener("click", async () => {
+  let data = GLOBAL_TIMERS.filter((timer) => timer.include.checked === true && timer.done !== null);
+  console.log("GLOBAL", data);
+  window.electronAPI.saveFile(data);
+});
