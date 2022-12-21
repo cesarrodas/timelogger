@@ -1,3 +1,65 @@
 /* styles.css */
 
 /* Add styles here to customize the appearance of your app */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #448aff;
+}
+
+.content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.manager {
+  min-height: 60px;
+  background-color: red;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  flex-grow: 1;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.main-container::-webkit-scrollbar {
+  display: none;
+}
+
+.timer-container {
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  padding: 0px 10px;
+}
+
+.timer-container > input {
+  height: 20px;
+  margin: 0 10px;
+  background-color: lightblue;
+}
+
+.manager > button {
+  position: absolute;
+  right: 40px;
+  bottom: 10px;
+  min-height: 40px;
+  width: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.timer-container > button {
+  margin: 0 10px;
+}
