@@ -54,6 +54,10 @@ class Timer {
       } 
     });
     this.container.append(this.startButton);
+
+    this.include = document.createElement("INPUT");
+    this.include.setAttribute("type", "checkbox");
+    this.container.append(this.include);
   }
 }
 

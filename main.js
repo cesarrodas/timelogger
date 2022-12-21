@@ -41,3 +41,22 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+// const csvWriter = createCsvWriter({
+//     path: 'path/to/file.csv',
+//     header: [
+//         {id: 'name', title: 'NAME'},
+//         {id: 'lang', title: 'LANGUAGE'}
+//     ]
+// });
+ 
+// const records = [
+//     {name: 'Bob',  lang: 'French, English'},
+//     {name: 'Mary', lang: 'English'}
+// ];
+ 
+// csvWriter.writeRecords(records)       // returns a promise
+//     .then(() => {
+//         console.log('...Done');
+//     });
