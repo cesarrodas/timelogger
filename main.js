@@ -35,21 +35,37 @@ app.whenReady().then(() => {
   ipcMain.on('saveFile', async (event, data) => {
     console.log("Data", data);
     let saveFile = await dialog.showSaveDialog();
-    console.log(saveFile);
-    const csvWriter = createCsvWriter({
-      path: 'path/to/file.csv',
-      header: [
-        {id: 'name', title: 'NAME'},
-        {id: 'lang', title: 'LANGUAGE'}
-      ]
-    });
+    //console.log(saveFile);
+    if(saveFile.filePath){
+      const csvWriter = createCsvWriter({
+        path: saveFile.filePath,
+        header: [
+          {id: 'date', title: 'DATE'},
+          {id: 'start', title: 'START'},
+          {id: 'end', title: 'END'},
+          {id: 'task', title: 'TASK'},
+        ]
+      });
+      await csvWriter.writeRecords(data);
+    }
     
   });
 
   ipcMain.on('appendToFile', async (event, data) => {
-    console.log("Data", data);
     let saveFile = await dialog.showSaveDialog();
-    console.log(saveFile);
+    if(saveFile.filePath){
+      const csvWriter = createCsvWriter({
+        path: saveFile.filePath,
+        header: [
+          {id: 'date', title: 'DATE'},
+          {id: 'start', title: 'START'},
+          {id: 'end', title: 'END'},
+          {id: 'task', title: 'TASK'},
+        ],
+        append: true
+      });
+      await csvWriter.writeRecords(data);
+    }
   });
 })
 

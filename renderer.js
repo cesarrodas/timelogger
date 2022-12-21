@@ -11,10 +11,22 @@ class Timer {
   constructor(){
     this.interval;
     this.seconds = 0;
-    this.display();
     this.started = false;
     this.start = null;
     this.done = null;
+    this.task = null;
+    this.date = null;
+    this.display();
+  }
+
+  save(){
+    //console.log("task", this);
+    return {
+      task: this.task.value,
+      start: new Date(this.start).toLocaleTimeString(),
+      end: new Date(this.done).toLocaleTimeString(),
+      date: this.date,
+    }
   }
   
   timerFormatter(){
@@ -47,6 +59,7 @@ class Timer {
     this.startButton.addEventListener("click",() => {
       if(!this.interval){        
         this.startButton.innerText = "Log";
+        this.date = new Date().toLocaleDateString();
         this.start = Date.now();
         this.interval = setInterval(() => {
           this.seconds++;
@@ -82,12 +95,14 @@ let appendButton = document.querySelector("#appendButton");
 // });
 
 appendButton.addEventListener('click', () => {
-  window.electronAPI.appendToFile("appending")
+  let data = GLOBAL_TIMERS.filter((timer) => timer.include.checked === true && timer.done !== null);
+  data = data.map((el) => el.save());
+  window.electronAPI.appendToFile(data);
 });
 
 let savingButton = document.querySelector("#savingButton");
 savingButton.addEventListener("click", async () => {
   let data = GLOBAL_TIMERS.filter((timer) => timer.include.checked === true && timer.done !== null);
-  console.log("GLOBAL", data);
+  data = data.map((el) => el.save());
   window.electronAPI.saveFile(data);
 });
